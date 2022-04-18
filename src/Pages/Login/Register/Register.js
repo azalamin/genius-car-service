@@ -4,6 +4,7 @@ import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile
 } from "react-firebase-hooks/auth";
+import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
@@ -41,6 +42,9 @@ const Register = () => {
 
   return (
     <div className="w-50 container mx-auto my-5">
+      <Helmet>
+        <title>Register -Genius Car</title>
+      </Helmet>
       <h2 className="text-primary text-center">Please Register</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicName">

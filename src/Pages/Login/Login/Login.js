@@ -5,6 +5,7 @@ import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword
 } from "react-firebase-hooks/auth";
+import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -57,6 +58,9 @@ const Login = () => {
 
   return (
     <div className="w-50 container mx-auto my-5">
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <h2 className="text-primary text-center">Please Login</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

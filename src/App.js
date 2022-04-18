@@ -16,21 +16,25 @@ function App() {
     <div>
       <Header />
       <Routes>
-        <Route path="/" element={<Home></Home>} />
-        <Route path="/home" element={<Home></Home>} />
-        <Route path="/service/:serviceId" element={<ServiceDetail />} />
-        <Route path="/about" element={<About></About>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home></Home>} title="Home" />
+        <Route path="/home" element={<Home></Home>} title="Home" />
+        <Route
+          path="/service/:serviceId"
+          element={<ServiceDetail title="Service Detail" />}
+        />
+        <Route path="/about" element={<About></About>} title="About" />
+        <Route path="/login" element={<Login />} title="Login" />
+        <Route path="/register" element={<Register />} title="Register" />
         <Route
           path="/checkout"
+          title="Checkout"
           element={
             <RequireAuth>
               <Checkout></Checkout>
             </RequireAuth>
           }
         />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound title="Page not found" />} />
       </Routes>
       <Footer />
     </div>

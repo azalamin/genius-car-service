@@ -1,10 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const About = () => {
     return (
-        <div>
-            <h2>This is about us </h2>
-        </div>
+      <div>
+        <Helmet>
+          <title>About -Genius Car</title>
+        </Helmet>
+        <h2>This is about us </h2>
+      </div>
     );
 };
 
