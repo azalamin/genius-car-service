@@ -1,13 +1,11 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
 import notFoundImg from "../../../images/notFound-img.jpeg";
+import PageTitle from "../PageTitle/PageTitle";
 
 const NotFound = () => {
   return (
     <div className="text-center">
-      <Helmet>
-        <title>Not Found</title>
-      </Helmet>
+      <PageTitle title="Not Found"></PageTitle>
       <h1 className="text-danger py-5">Mechanic is Sleeping</h1>
       <img className="w-50" src={notFoundImg} alt="" />
     </div>

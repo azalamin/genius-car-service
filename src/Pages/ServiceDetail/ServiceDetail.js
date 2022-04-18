@@ -1,12 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
+import PageTitle from '../Shared/PageTitle/PageTitle';
 
 const ServiceDetail = () => {
     const { serviceId } = useParams();
-    <Helmet>
-      <title>Service Details</title>
-    </Helmet>
+   <PageTitle title="Service Details"></PageTitle>;
     return (
         <div>
             <h2 className='text-center'>Welcome to service detail {serviceId}</h2>

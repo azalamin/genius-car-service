@@ -1,12 +1,10 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import PageTitle from '../../Shared/PageTitle/PageTitle';
 
 const checkout = () => {
     return (
       <div className="container py-5 text-center">
-        <Helmet>
-          <title>Checkout</title>
-        </Helmet>
+        <PageTitle title="Checkout"></PageTitle>
         <h2>Please Checkout your booking</h2>
       </div>
     );

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile
 } from "react-firebase-hooks/auth";
-import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Register = () => {
@@ -24,15 +24,17 @@ const Register = () => {
     const password = event.target.password.value;
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });
-    navigate("/home");
+     
   };
+
+  useEffect( () => {
+    if (user) {
+      navigate("/home"); 
+    }
+  }, [user])
   
   if(loading || updating){
     return <Loading></Loading>
-  }
-
-  if (user) {
-    console.log("user", user);
   }
 
   let errorElement;
@@ -42,9 +44,7 @@ const Register = () => {
 
   return (
     <div className="w-50 container mx-auto my-5">
-      <Helmet>
-        <title>Register -Genius Car</title>
-      </Helmet>
+      <PageTitle title="Register"></PageTitle>
       <h2 className="text-primary text-center">Please Register</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicName">

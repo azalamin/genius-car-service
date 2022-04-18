@@ -5,12 +5,12 @@ import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword
 } from "react-firebase-hooks/auth";
-import { Helmet } from "react-helmet-async";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
+import PageTitle from "../../Shared/PageTitle/PageTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
@@ -58,9 +58,7 @@ const Login = () => {
 
   return (
     <div className="w-50 container mx-auto my-5">
-      <Helmet>
-        <title>Login</title>
-      </Helmet>
+      <PageTitle title="Login"></PageTitle>
       <h2 className="text-primary text-center">Please Login</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
