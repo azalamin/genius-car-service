@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Home from "../src/Pages/Home/Home/Home";
 import "./App.css";
 import About from "./Pages/About/About";
@@ -8,6 +9,7 @@ import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
 import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
 import Manage from "./Pages/Manage/Manage";
+import Order from "./Pages/Order/Order";
 import ServiceDetail from "./Pages/ServiceDetail/ServiceDetail";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
@@ -28,7 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} title="Login" />
         <Route path="/register" element={<Register />} title="Register" />
         <Route
-          path="/checkout"
+          path="/checkout/:serviceId"
           title="Checkout"
           element={
             <RequireAuth>
@@ -52,9 +54,18 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route
+          path="/order"
+          element={
+            <RequireAuth>
+              <Order />
+            </RequireAuth>
+          }
+        />
         <Route path="*" element={<NotFound title="Page not found" />} />
       </Routes>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

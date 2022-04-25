@@ -15,7 +15,7 @@ const Manage = () => {
         if (data.deletedCount > 0) {
           const remaining = services.filter(service => service._id !== id);
           setServices(remaining);
-        }
+        } 
       })
     }
   };
