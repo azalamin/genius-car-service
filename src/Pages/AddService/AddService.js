@@ -1,8 +1,11 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const AddService = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
+    const navigate = useNavigate();
     const onSubmit = (data) => {
         fetch("https://sleepy-sands-20583.herokuapp.com/services", {
             method: 'POST',
@@ -14,6 +17,9 @@ const AddService = () => {
         .then(res => res.json())
         .then(result => {
             console.log(result);
+            toast("Added Product");
+            reset();
+            navigate('/home')
         })
     };
     return (

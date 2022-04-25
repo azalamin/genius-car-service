@@ -29,8 +29,15 @@ const Order = () => {
   }, [user]);
 
   return (
-    <div>
+    <div className="text-center my-5 ">
       <h2>Your Orders: {orders.length}</h2>
+      <div>
+        {
+          orders.map(order => <div key={order._id}>
+            <p>{order.email} {order.service}</p>
+          </div>)
+        }
+      </div>
     </div>
   );
 };
