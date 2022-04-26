@@ -8,7 +8,7 @@ const useToken = (user) => {
     const getToken = async () => {
       if (email) {
         const { data } = await axios.post(
-          `https://sleepy-sands-20583.herokuapp.com/login`,
+          `https://evening-forest-22610.herokuapp.com/login`,
           { email }
         );
         setToken(data?.accessToken);

@@ -7,7 +7,7 @@ const AddService = () => {
     const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
     const onSubmit = (data) => {
-        fetch("https://sleepy-sands-20583.herokuapp.com/services", {
+        fetch("https://evening-forest-22610.herokuapp.com/services", {
             method: 'POST',
             headers: {
                 "content-type": "application/json"

@@ -7,7 +7,7 @@ const Manage = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure you want to delete?");
     if (proceed) {
-      fetch(`https://sleepy-sands-20583.herokuapp.com/service/${id}`, {
+      fetch(`https://evening-forest-22610.herokuapp.com/service/${id}`, {
         method: "DELETE",
       })
       .then(res => res.json())

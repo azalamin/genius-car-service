@@ -12,7 +12,7 @@ const Order = () => {
 
   useEffect(() => {
     const email = user.email;
-    const url = `https://sleepy-sands-20583.herokuapp.com/order?email=${email}`;
+    const url = `https://evening-forest-22610.herokuapp.com/order?email=${email}`;
     const getOrders = async () => {
       try {
         const { data } = await axiosPrivet.get(url);

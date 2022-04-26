@@ -40,7 +40,7 @@ const Checkout = () => {
 
     // Send a POST request
     axios
-      .post("https://sleepy-sands-20583.herokuapp.com/order", order)
+      .post("https://evening-forest-22610.herokuapp.com/order", order)
       .then((res) => {
         const data = res.data;
         if (data.insertedId) {
