@@ -1,8 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Button, Form } from "react-bootstrap";
 import {
-  useAuthState,
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword
 } from "react-firebase-hooks/auth";
@@ -10,6 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import auth from "../../../firebase.init";
+import useToken from "../../../hooks/useToken";
 import Loading from "../../Shared/Loading/Loading";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -21,27 +20,21 @@ const Login = () => {
   const location = useLocation();
   const [signInWithEmailAndPassword, user1, loading, error] =
     useSignInWithEmailAndPassword(auth);
-  const [user] = useAuthState(auth);
-  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+  const [token] = useToken(user1);
 
   const from = location.state?.from?.pathname || "/";
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     await signInWithEmailAndPassword(email, password);
-    const { data } = await axios.post(`https://sleepy-sands-20583.herokuapp.com/login`, {email}); 
-    localStorage.setItem('accessToken', data.accessToken);
-    navigate(from, { replace: true });
-    console.log(data);
   };
 
-  useEffect(() => {
-    if (user) {
-      // 
-    }
-  }, [user]);
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   if (loading) {
     return <Loading></Loading>;

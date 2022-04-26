@@ -6,6 +6,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useToken from "../../../hooks/useToken";
 import Loading from "../../Shared/Loading/Loading";
 import PageTitle from "../../Shared/PageTitle/PageTitle";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -16,6 +17,7 @@ const Register = () => {
   const [updateProfile, updating, updateError] = useUpdateProfile(auth);
   const navigate = useNavigate();
   const [agree, setAgree] = useState(false);
+  const [token] = useToken(user);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,10 +30,10 @@ const Register = () => {
   };
 
   useEffect( () => {
-    if (user) {
-      navigate("/home"); 
+    if (token) {
+      navigate("/home");
     }
-  }, [user])
+  }, [token])
   
   if(loading || updating){
     return <Loading></Loading>
@@ -80,7 +82,7 @@ const Register = () => {
             className="me-2"
           />
           <label
-            className={agree ? "text-success" : "text-danger"}
+          className="text-muted"
             htmlFor="terms"
           >
             Accept genius car terms and conditions

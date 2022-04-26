@@ -1,10 +1,11 @@
 import React from "react";
 import {
-    useSignInWithGithub,
-    useSignInWithGoogle
+  useSignInWithGithub,
+  useSignInWithGoogle
 } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import useToken from "../../../hooks/useToken";
 import facebook from "../../../images/Facebook.png";
 import github from "../../../images/github.png";
 import googleLogo from "../../../images/google-logo.png";
@@ -14,11 +15,14 @@ const SocialLogin = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const [signInWithGithub, userGithub, loadingGithub, errorGithub] =
     useSignInWithGithub(auth);
+  const [token] = useToken(user || userGithub);
+  const location = useLocation();
 
   const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   if (loading || loadingGithub) {
-      return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
   let errorElement;
@@ -30,8 +34,8 @@ const SocialLogin = () => {
     );
   }
 
-  if (user) {
-    navigate("/home");
+  if (token) {
+    navigate(from, { replace: true });
   }
 
   return (
